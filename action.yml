@@ -142,6 +142,13 @@ runs:
             # exception: we got triggered by a pull request, the ref is the base branch
             WORKFLOW_REF=$GITHUB_HEAD_REF
             ;;
+          *)
+            # called by commit SHA (uses: org/repo/.github/workflows/x.yml@<sha>), as code scanning
+            # requires for reusable workflows: check out that exact commit
+            if [[ $WORKFLOW_FULL_REF =~ ^[0-9a-f]{40}$ ]]; then
+              WORKFLOW_REF=$WORKFLOW_FULL_REF
+            fi
+            ;;
         esac
 
         echo "repository=$WORKFLOW_REPOSITORY" >> $GITHUB_OUTPUT

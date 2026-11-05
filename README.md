@@ -23,4 +23,6 @@ This action mirrors the arguments of [`actions/checkout`](https://github.com/act
 
 For example, if you call: `user/repository/.github/workflows/workflow.yml@branch`, it will checkout the `user/repository` repository using `branch` as reference
 
+Calling by full commit SHA (`user/repository/.github/workflows/workflow.yml@<40-char sha>`), as code scanning recommends for reusable workflows, checks out that commit.
+
 > This repository is committed to maintaining compatibility and same version as [`actions/checkout`](https://github.com/actions/checkout)
